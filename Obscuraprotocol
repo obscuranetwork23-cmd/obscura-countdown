@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OBSCURA 2050</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+    body {
+      background: black;
+      color: #00ff9f;
+      font-family: 'Share Tech Mono', monospace;
+      text-align: center;
+      padding: 40px;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      text-shadow: 0 0 10px #00ff9f, 0 0 20px #008b5a;
+      animation: glitch 2s infinite;
+    }
+
+    #countdown {
+      font-size: 2em;
+      margin: 20px 0;
+      text-shadow: 0 0 5px #00ff9f;
+    }
+
+    .treasure {
+      width: 160px;
+      cursor: pointer;
+      margin-top: 30px;
+      filter: drop-shadow(0 0 10px #00ff9f);
+      transition: 0.3s ease;
+    }
+    .treasure:hover {
+      transform: scale(1.1);
+    }
+
+    .hidden-message {
+      display: none;
+      margin-top: 20px;
+      font-style: italic;
+      color: #ff004c;
+      text-shadow: 0 0 10px #ff004c;
+    }
+
+    .buy-btn {
+      margin-top: 40px;
+      padding: 12px 25px;
+      background: none;
+      border: 2px solid #00ff9f;
+      color: #00ff9f;
+      cursor: pointer;
+      font-size: 1.1em;
+      text-transform: uppercase;
+      transition: 0.3s ease;
+    }
+    .buy-btn:hover {
+      background: #00ff9f;
+      color: black;
+    }
+
+    @keyframes glitch {
+      0% { text-shadow: 2px 2px #ff004c; }
+      25% { text-shadow: -2px -2px #00ff9f; }
+      50% { text-shadow: 2px -2px #008b5a; }
+      75% { text-shadow: -2px 2px #ff004c; }
+      100% { text-shadow: 0 0 10px #00ff9f; }
+    }
+  </style>
+</head>
+<body>
+  <h1>OBSCURA PROTOCOL</h1>
+  <div id="countdown"></div>
+
+  <img src="https://i.ibb.co/z2rvpYg/treasure.png" class="treasure" onclick="revealMessage()" alt="Treasure Box">
+
+  <div id="message" class="hidden-message">
+    "This box can only be opened with OBSCURA coin in the year 2050"
+  </div>
+
+  <br>
+  <button class="buy-btn" onclick="window.open('https://pump.fun','_blank')">BUY OBSCURA</button>
+
+  <script>
+    // Countdown ke tahun 2050
+    var countDownDate = new Date("Jan 1, 2050 00:00:00").getTime();
+    var x = setInterval(function() {
+      var now = new Date().getTime();
+      var distance = countDownDate - now;
+      var years = Math.floor(distance / (1000 * 60 * 60 * 24 * 365));
+      var days = Math.floor((distance % (1000 * 60 * 60 * 24 * 365)) / (1000*60*60*24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000*60*60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000*60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      document.getElementById("countdown").innerHTML =
+        years + "y " + days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+    }, 1000);
+
+    // Pesan misterius
+    function revealMessage() {
+      document.getElementById("message").style.display = "block";
+    }
+  </script>
+</body>
+</html>
