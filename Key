@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OBSCURA Protocol - Event Zero</title>
+<style>
+    body {
+        background-color: black;
+        color: limegreen;
+        font-family: monospace;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    /* Glitch Effect */
+    @keyframes glitch {
+        0% { text-shadow: 2px 0 red, -2px 0 blue; }
+        20% { text-shadow: -2px 0 red, 2px 0 blue; }
+        40% { text-shadow: 2px 0 red, -2px 0 blue; }
+        60% { text-shadow: -2px 0 red, 2px 0 blue; }
+        80% { text-shadow: 2px 0 red, -2px 0 blue; }
+        100% { text-shadow: -2px 0 red, 2px 0 blue; }
+    }
+    h1 {
+        font-size: 2.5rem;
+        margin-top: 40px;
+        animation: glitch 1s infinite;
+    }
+
+    #countdown {
+        font-size: 1.8rem;
+        margin: 20px 0;
+    }
+
+    img {
+        width: 250px;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: transform 0.2s;
+    }
+    img:hover {
+        transform: scale(1.05);
+    }
+
+    button {
+        background-color: transparent;
+        border: 2px solid limegreen;
+        color: limegreen;
+        padding: 10px 20px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        margin-top: 30px;
+        transition: 0.3s;
+    }
+    button:hover {
+        background-color: limegreen;
+        color: black;
+    }
+
+    #popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(0,0,0,0.95);
+        padding: 20px;
+        border: 2px solid limegreen;
+        z-index: 9999;
+        max-width: 300px;
+    }
+
+    #popup p {
+        font-size: 1.1rem;
+    }
+</style>
+</head>
+<body>
+
+<h1>OBSCURA Protocol - Event Zero</h1>
+<div id="countdown">Loading countdown...</div>
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Treasure_chest_icon.svg/1024px-Treasure_chest_icon.svg.png" 
+     alt="Treasure Chest" onclick="showPopup()">
+
+<div id="popup">
+    <p>This chest can only be opened with OBSCURA coins in the year 2050.</p>
+    <button onclick="closePopup()">Close</button>
+</div>
+
+<br>
+<button onclick="window.location.href='https://pump.fun/XXXX'">💎 Get the Key</button>
+
+<!-- Suara bisikan -->
+<audio id="whisperSound" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+
+<script>
+    // Countdown Function
+    function updateCountdown() {
+        const targetDate = new Date("January 1, 2050 00:00:00").getTime();
+        const now = new Date().getTime();
+        const diff = targetDate - now;
+
+        const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
+        const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById("countdown").innerHTML = 
+            years + " Years " + days + " Days " + hours + " Hours " + minutes + " Minutes " + seconds + " Seconds";
+    }
+    setInterval(updateCountdown, 1000);
+
+    // Popup Functions
+    function showPopup() {
+        document.getElementById("popup").style.display = "block";
+        document.getElementById("whisperSound").play();
+    }
+    function closePopup() {
+        document.getElementById("popup").style.display = "none";
+    }
+</script>
+
+</body>
+</html>
